@@ -5,10 +5,10 @@
 
 module.exports = function(app,db){
 
-		app.get('/new/:url',function(req,res){
-		if(validateURL(req.params.url)){
+		app.get('/new/*',function(req,res){
+		if(validateURL(req.params[0])){
 			db.collection('sites').findOne({
-				orginal_url:req.params.url
+				orginal_url:req.params[0]
 			},function(err,doc){
 				if(err){
 					console.log('Error: '+err);
@@ -18,7 +18,7 @@ module.exports = function(app,db){
 				}else{
 					var shortcode=shortGen();
 					var ndoc={
-						orginal_url:req.params.url,
+						orginal_url:req.params[0],
 						short_url:shortcode
 					};
 					db.collection('sites').insert(ndoc,function(err){
@@ -27,7 +27,7 @@ module.exports = function(app,db){
 						}else{
 							res.end('Success,short_url: '+shortcode);
 						}
-						db.close();
+						/*db.close();*/
 					})
 				}
 			})/*.toArray(function(err,doc){
@@ -56,16 +56,15 @@ module.exports = function(app,db){
 	});
 		
 	app.get('/:shortUrl',function(req,res){
-		console.log('boo');
+		console.log('boo:'+req.params.shortUrl);
 		db.collection('sites').findOne({
-			short_url:{
-				$eq:+req.params.shortUrl
-			}
+			short_url:req.params.shortUrl
 		},function(err,doc){
 			if(err){
 				 console.log('Error:'+err);
 			}
 			if(doc){
+				console.log('success');
 				res.redirect(doc.orginal_url);
 			}
 			//db.close();
