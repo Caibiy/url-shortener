@@ -15,6 +15,7 @@ app.set('view egine','jade');
 app.set('views',__dirname+'./tpl');
 
 MongoClient.connect(process.env.MONGOLAB_URI||'mongodb://localhost:27017/url-shortener',function(err,db){
+	console.log('*********URL************: '+process.env.MONGOLAB_UR);
 	if(err){
 		return console.log("Error: "+err);
 	}
