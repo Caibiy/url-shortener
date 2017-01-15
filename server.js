@@ -14,13 +14,19 @@ var port = process.env.PORT||3000;
 app.set('view egine','jade');
 app.set('views',__dirname+'./tpl');
 
-MongoClient.connect(process.env.MONGOLAB_URI || 'mongodb://localhost:27017/url-shortener',function(err,db){
+/*MongoClient.connect(process.env.MONGOLAB_URI || 'mongodb://localhost:27017/url-shortener',function(err,db){
+	if(err){
+		return console.log("Error: "+err);
+	}
+	routes(app,db);
+})*/
+//'mongodb://root:root@ds111489.mlab.com:11489/sites'
+MongoClient.connect(process.env.MONGOLAB_URI,function(err,db){
 	if(err){
 		return console.log("Error: "+err);
 	}
 	routes(app,db);
 })
-
 /**
  * route
  */
