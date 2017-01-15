@@ -14,8 +14,7 @@ var port = process.env.PORT||3000;
 app.set('view egine','jade');
 app.set('views',__dirname+'./tpl');
 
-MongoClient.connect(process.env.DATABASE_URL || 'mongodb://localhost:27017/url-shortener',function(err,db){
-	console.log('*********URL************: '+process.env.DATABASE_URL)
+MongoClient.connect(process.env.MONGOLAB_URI || 'mongodb://localhost:27017/url-shortener',function(err,db){
 	if(err){
 		return console.log("Error: "+err);
 	}
