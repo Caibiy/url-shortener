@@ -9,6 +9,7 @@
 		<div class="container">
 			<h3>Url Shortener Tool</h3>
 			<span class="label label-info">这是一个练习Node全栈的一个小工具</span>
+			<div class="clear" style="height:2px;margin:5px 0;"></div>
 			<blockquote>
 				<p>使用手册</p>
 				<ol type="1">
@@ -16,6 +17,14 @@
 					<li>通过随机码,访问之前的url地址</li>
 				</ol>
 			</blockquote>
+			<h4>第一步:</h4>
+			<code>https://localhost:3000/new/http://foo.com:80</code>
+			<h4>得到返回的short_url:</h4>
+			<code>已经存在Url,short-url为:2205</code>
+			<h4>根据返回的short_url访问:</h4>
+			<code>http://localhost:3000/2205</code>
+			<h4>将会访问:</h4>
+			<code>http://foo.com:80</code>
 		</div>
 	</body>
 </html>
